@@ -42,7 +42,8 @@ public class EnemySpawnerSystem
                 tempObject.GetComponent<CharacterMoveComponent>().TargetTransform = playerTransform.position;
                 if (objectPool.IsNewGenerate)
                 {
-                    gameEvent.AddComponent(tempObject);
+                    gameEvent.AddComponent?.Invoke(tempObject);
+                    gameEvent.Initialize?.Invoke(tempObject);
                     objectPool.IsNewGenerate = false;
                 }
             }
