@@ -11,13 +11,14 @@ public class Main : MonoBehaviour
 
     private PlayerInputSystem playerInputSystem;
     private CharacterMoveSystem characterMoveSystem;
-
+    private PlayerAttackSystem playerAttackSystem;
     void Start()
     {
         gameEvent = new GameEvent();
 
         playerInputSystem = new PlayerInputSystem(gameEvent);
         characterMoveSystem = new CharacterMoveSystem(gameEvent);
+        playerAttackSystem = new PlayerAttackSystem(gameEvent);
 
         GameObject player = Instantiate(playerPrefab);
         gameEvent.AddComponent(player);
@@ -27,5 +28,6 @@ public class Main : MonoBehaviour
     {
         playerInputSystem.OnUpdate();
         characterMoveSystem.OnUpdate();
+        playerAttackSystem.OnUpdate();
     }
 }
