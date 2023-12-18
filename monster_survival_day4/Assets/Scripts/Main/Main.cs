@@ -17,6 +17,8 @@ public class Main : MonoBehaviour
     private PlayerInputSystem playerInputSystem;
     private CharacterMoveSystem characterMoveSystem;
     private PlayerAttackSystem playerAttackSystem;
+
+    private BulletMoveSystem bulletMoveSystem;
     void Start()
     {
         gameEvent = new GameEvent();
@@ -28,14 +30,11 @@ public class Main : MonoBehaviour
 
         playerInputSystem = new PlayerInputSystem(gameEvent);
         characterMoveSystem = new CharacterMoveSystem(gameEvent);
-        playerAttackSystem = new PlayerAttackSystem(gameEvent);
+        playerAttackSystem = new PlayerAttackSystem(gameEvent, objectPool);
 
-
-        GameObject enemy = Instantiate(enemyPrefab);
-        enemy.GetComponent<CharacterMoveComponent>().TargetTransform = player.transform;
+        bulletMoveSystem = new BulletMoveSystem(gameEvent);
 
         gameEvent.AddComponent(player);
-        gameEvent.AddComponent(enemy);
         gameEvent.AddComponent(enemySpawner);
     }
 
@@ -45,5 +44,6 @@ public class Main : MonoBehaviour
         characterMoveSystem.OnUpdate();
         playerAttackSystem.OnUpdate();
         enemySpawnerSystem.OnUpdate();
+        bulletMoveSystem.OnUpdate();
     }
 }

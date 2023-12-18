@@ -7,4 +7,5 @@ public class GameEvent
 {
     public Action<GameObject> AddComponent;
     public Action<GameObject> RemoveComponent;
+    public Action<GameObject> ReleaseObject;
 }

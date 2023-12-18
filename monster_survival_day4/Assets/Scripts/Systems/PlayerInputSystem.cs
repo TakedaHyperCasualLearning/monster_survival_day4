@@ -25,6 +25,7 @@ public class PlayerInputSystem
 
             Movement(characterMoveComponent);
             MouseClick(inputComponentList[i]);
+            MoveMouse(inputComponentList[i], characterMoveComponent);
         }
     }
 
@@ -48,6 +49,15 @@ public class PlayerInputSystem
             return;
         }
         inputComponent.IsClick = false;
+    }
+
+    private void MoveMouse(InputComponent inputComponent, CharacterMoveComponent characterMoveComponent)
+    {
+        Vector3 playerPoint = Camera.main.WorldToScreenPoint(characterMoveComponent.gameObject.transform.position);
+        Vector3 rotationDirection = Input.mousePosition - playerPoint;
+        rotationDirection = rotationDirection.normalized;
+        rotationDirection.z = 0.0f;
+        characterMoveComponent.TargetTransform = Camera.main.ScreenToWorldPoint(playerPoint + rotationDirection);
     }
 
     public void AddComponent(GameObject gameObject)

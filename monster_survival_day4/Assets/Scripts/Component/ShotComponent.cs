@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ShotComponent : MonoBehaviour
 {
-    private float shotSpeed;
-    [SerializeField] private float shotSpeedInterval;
+    [SerializeField] GameObject bulletPrefab;
+    private float shotTimer;
+    [SerializeField] private float shotInterval;
 
-    public float ShotSpeed { get { return shotSpeed; } set { shotSpeed = value; } }
-    public float ShotSpeedInterval { get { return shotSpeedInterval; } set { shotSpeedInterval = value; } }
+    public GameObject BulletPrefab { get { return bulletPrefab; } set { bulletPrefab = value; } }
+    public float ShotTimer { get { return shotTimer; } set { shotTimer = value; } }
+    public float ShotInterval { get { return shotInterval; } set { shotInterval = value; } }
 }

@@ -11,7 +11,7 @@ public class ObjectPool
 
     public ObjectPool(GameEvent gameEvent)
     {
-        gameEvent.RemoveComponent += ReturnObject;
+        gameEvent.ReleaseObject += ReturnObject;
     }
 
     public GameObject GetObject(GameObject gameObject)
@@ -53,6 +53,20 @@ public class ObjectPool
     public void ReturnObject(GameObject gameObject)
     {
         gameObject.SetActive(false);
+    }
+
+    public List<GameObject> GetGameObjectList(GameObject gameObject)
+    {
+        int instanceID = gameObject.GetInstanceID();
+
+        if (pool.ContainsKey(instanceID))
+        {
+            return pool[instanceID];
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public bool IsNewGenerate { get => isNewGenerate; set => isNewGenerate = value; }
