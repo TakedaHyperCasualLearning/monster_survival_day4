@@ -23,8 +23,13 @@ public class CharacterMoveSystem
             CharacterMoveComponent characterMoveComponent = characterMoveComponentList[i];
             if (!characterMoveComponent.gameObject.activeSelf) continue;
 
-            characterMoveComponent.gameObject.transform.Translate(characterMoveComponent.Direction * characterMoveComponent.Speed * Time.deltaTime, Space.Self);
+            if (characterMoveComponent.IsChase)
+            {
+                characterMoveComponent.gameObject.transform.LookAt(characterMoveComponent.TargetTransform);
+                characterMoveComponent.Direction = Vector3.forward;
+            }
 
+            characterMoveComponent.gameObject.transform.Translate(characterMoveComponent.Direction * characterMoveComponent.Speed * Time.deltaTime, Space.Self);
         }
     }
 

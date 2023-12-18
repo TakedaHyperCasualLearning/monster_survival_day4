@@ -6,6 +6,7 @@ using UnityEngine;
 public class Main : MonoBehaviour
 {
     [SerializeField] GameObject playerPrefab;
+    [SerializeField] GameObject enemyPrefab;
 
     private GameEvent gameEvent;
 
@@ -22,6 +23,10 @@ public class Main : MonoBehaviour
 
         GameObject player = Instantiate(playerPrefab);
         gameEvent.AddComponent(player);
+
+        GameObject enemy = Instantiate(enemyPrefab);
+        gameEvent.AddComponent(enemy);
+        enemy.GetComponent<CharacterMoveComponent>().TargetTransform = player.transform;
     }
 
     void Update()
