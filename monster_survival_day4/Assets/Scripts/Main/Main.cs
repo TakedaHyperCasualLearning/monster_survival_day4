@@ -5,13 +5,27 @@ using UnityEngine;
 
 public class Main : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] GameObject playerPrefab;
+
+    private GameEvent gameEvent;
+
+    private PlayerInputSystem playerInputSystem;
+    private CharacterMoveSystem characterMoveSystem;
+
     void Start()
     {
+        gameEvent = new GameEvent();
+
+        playerInputSystem = new PlayerInputSystem(gameEvent);
+        characterMoveSystem = new CharacterMoveSystem(gameEvent);
+
+        GameObject player = Instantiate(playerPrefab);
+        gameEvent.AddComponent(player);
     }
 
-    // Update is called once per frame
     void Update()
     {
+        playerInputSystem.OnUpdate();
+        characterMoveSystem.OnUpdate();
     }
 }
