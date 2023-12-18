@@ -7,7 +7,6 @@ public class CharacterMoveSystem
     private GameEvent gameEvent;
     List<CharacterMoveComponent> characterMoveComponentList = new List<CharacterMoveComponent>();
 
-
     public CharacterMoveSystem(GameEvent gameEvent)
     {
         this.gameEvent = gameEvent;

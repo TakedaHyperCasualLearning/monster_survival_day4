@@ -7,6 +7,13 @@ public class ObjectPool
 {
     private Dictionary<int, List<GameObject>> pool = new Dictionary<int, List<GameObject>>();
 
+    private bool isNewGenerate = false;
+
+    public ObjectPool(GameEvent gameEvent)
+    {
+        gameEvent.RemoveComponent += ReturnObject;
+    }
+
     public GameObject GetObject(GameObject gameObject)
     {
         int instanceID = gameObject.GetInstanceID();
@@ -21,7 +28,6 @@ public class ObjectPool
                 {
                     gameObjectList[i].SetActive(true);
                     gameObjectList[i].transform.position = Vector3.zero;
-                    gameObjectList[i].active = true;
                     return gameObjectList[i];
                 }
             }
@@ -29,6 +35,7 @@ public class ObjectPool
             GameObject newGameObject = GameObject.Instantiate(gameObject);
             newGameObject.SetActive(true);
             gameObjectList.Add(newGameObject);
+            isNewGenerate = true;
             return newGameObject;
         }
         else
@@ -38,7 +45,15 @@ public class ObjectPool
             newGameObject.SetActive(true);
             gameObjectList.Add(newGameObject);
             pool.Add(instanceID, gameObjectList);
+            isNewGenerate = true;
             return newGameObject;
         }
     }
+
+    public void ReturnObject(GameObject gameObject)
+    {
+        gameObject.SetActive(false);
+    }
+
+    public bool IsNewGenerate { get => isNewGenerate; set => isNewGenerate = value; }
 }

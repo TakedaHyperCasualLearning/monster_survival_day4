@@ -10,4 +10,5 @@ public class InputComponent : MonoBehaviour
     public Vector2 MousePosition { get { return mousePosition; } set { mousePosition = value; } }
     public bool IsClick { get { return isClick; } set { isClick = value; } }
 
+
 }
