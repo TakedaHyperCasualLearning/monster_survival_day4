@@ -22,9 +22,13 @@ public class CharacterMoveSystem
             CharacterMoveComponent characterMoveComponent = characterMoveComponentList[i];
             if (!characterMoveComponent.gameObject.activeSelf) continue;
 
-            if (characterMoveComponent.IsChase)
+            if (characterMoveComponent.IsLookAtTarget)
             {
                 characterMoveComponent.gameObject.transform.LookAt(characterMoveComponent.TargetTransform);
+            }
+
+            if (characterMoveComponent.IsChase)
+            {
                 characterMoveComponent.Direction = Vector3.forward;
             }
 

@@ -40,13 +40,21 @@ public class EnemySpawnerSystem
                 spawnPosition *= Random.Range(0, 2) == 0 ? 1 : -1;
                 spawnPosition = playerTransform.position + spawnPosition;
                 tempObject.transform.position = spawnPosition;
-                tempObject.GetComponent<CharacterMoveComponent>().TargetTransform = playerTransform;
+                tempObject.GetComponent<CharacterMoveComponent>().TargetTransform = playerTransform.position;
                 if (objectPool.IsNewGenerate)
                 {
                     gameEvent.AddComponent(tempObject);
                     objectPool.IsNewGenerate = false;
                 }
             }
+        }
+
+        List<GameObject> enemyList = objectPool.GetGameObjectList(enemySpawnerComponentList[0].EnemyPrefab);
+        if (enemyList == null) return;
+        for (int i = 0; i < enemyList.Count; i++)
+        {
+            if (!enemyList[i].activeSelf) continue;
+            enemyList[i].GetComponent<CharacterMoveComponent>().TargetTransform = playerTransform.position;
         }
     }
 
