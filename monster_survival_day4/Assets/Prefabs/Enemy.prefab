@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1380934125955205976}
   - component: {fileID: -8754456017431433387}
   - component: {fileID: 7533132930506491020}
+  - component: {fileID: 2768412281419653006}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b03cc1ef8be344077809b2f993c54132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 10
+  hitPoint: 5
   attack: 5
 --- !u!114 &1380934125955205976
 MonoBehaviour:
@@ -142,3 +143,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9f06c0c0be0a4eb98c6feabedec1c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2768412281419653006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380934125955205979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f82266803b0400eaa5c4f13924e55f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPointUIPrefab: {fileID: 7473815130602529575, guid: d26da8bb274fb4607936adaf2f76cd62, type: 3}
+  positionOffset: {x: 0, y: 0, z: 1}

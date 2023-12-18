@@ -8,4 +8,8 @@ public class GameEvent
     public Action<GameObject> AddComponent;
     public Action<GameObject> RemoveComponent;
     public Action<GameObject> ReleaseObject;
+    public Action LevelUp;
+    public Func<bool> IsLevelUp;
+    public Action<GameObject> Initialize;
+    public Action GameOver;
 }

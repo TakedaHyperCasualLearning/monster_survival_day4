@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 557443465518536299}
   - component: {fileID: 1516392913205666798}
   - component: {fileID: 727113108012610191}
+  - component: {fileID: 4426512428848596082}
+  - component: {fileID: 8975941479148420284}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -170,3 +172,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9f06c0c0be0a4eb98c6feabedec1c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4426512428848596082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773284988099865529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f82f2891a2f42c3b9ca4090d673579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experiencePointBorder: 3
+  rasingAttack: 1
+  rasingHitPoint: 10
+  rasingAttackSpeed: 0.05
+--- !u!114 &8975941479148420284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773284988099865529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f82266803b0400eaa5c4f13924e55f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPointUIPrefab: {fileID: 7473815130602529575, guid: d26da8bb274fb4607936adaf2f76cd62, type: 3}
+  positionOffset: {x: 0, y: 0, z: 0.5}

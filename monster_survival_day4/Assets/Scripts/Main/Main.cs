@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using TMPro;
 using UnityEngine;
 
 public class Main : MonoBehaviour
@@ -10,6 +11,11 @@ public class Main : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] GameObject cameraObject;
     [SerializeField] GameObject enemySpawner;
+    [SerializeField] GameObject LevelUpUI;
+    [SerializeField] GameObject gameOverUI;
+    [SerializeField] Canvas UICanvas;
+    [SerializeField] TextMeshProUGUI hitPointText;
+    [SerializeField] TextMeshPro hitPointTextMeshPro;
 
     private GameEvent gameEvent;
     private ObjectPool objectPool;
@@ -27,6 +33,11 @@ public class Main : MonoBehaviour
     private CameraMoveSystem cameraMoveSystem;
 
     private DamageSystem damageSystem;
+    private LevelUpSystem levelUpSystem;
+    private LevelUpUISystem levelUpUISystem;
+    private GameOverSystem gameOverSystem;
+
+    private HitPointUISystem hitPointUISystem;
 
     void Start()
     {
@@ -47,15 +58,29 @@ public class Main : MonoBehaviour
 
         cameraMoveSystem = new CameraMoveSystem(gameEvent, player.transform);
 
-        damageSystem = new DamageSystem(gameEvent);
+        damageSystem = new DamageSystem(gameEvent, player);
+        levelUpSystem = new LevelUpSystem(gameEvent, player);
+        levelUpUISystem = new LevelUpUISystem(gameEvent, player);
+        gameOverSystem = new GameOverSystem(gameEvent);
+
+        hitPointUISystem = new HitPointUISystem(gameEvent, UICanvas, hitPointText);
 
         gameEvent.AddComponent(player);
         gameEvent.AddComponent(cameraObject);
         gameEvent.AddComponent(enemySpawner);
+        gameEvent.AddComponent(LevelUpUI);
+        gameEvent.AddComponent(gameOverUI);
+
+        levelUpUISystem.Initialize();
+        hitPointUISystem.Initialize(player);
     }
 
     void Update()
     {
+        levelUpSystem.OnUpdate();
+        levelUpUISystem.OnUpdate();
+        if (gameEvent.IsLevelUp()) return;
+        damageSystem.OnUpdate();
         playerInputSystem.OnUpdate();
         characterMoveSystem.OnUpdate();
         playerAttackSystem.OnUpdate();
@@ -63,7 +88,8 @@ public class Main : MonoBehaviour
         bulletMoveSystem.OnUpdate();
         bulletHitSystem.OnUpdate();
         enemyAttackSystem.OnUpdate();
-        damageSystem.OnUpdate();
         cameraMoveSystem.OnUpdate();
+        hitPointUISystem.OnUpdate();
+        gameOverSystem.OnUpdate();
     }
 }
