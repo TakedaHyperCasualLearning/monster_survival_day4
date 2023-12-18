@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletBaseComponent : MonoBehaviour
 {
-    private int attack = 0;
+    [SerializeField] private int attack = 0;
 
     public int Attack { get { return attack; } set { attack = value; } }
 }
