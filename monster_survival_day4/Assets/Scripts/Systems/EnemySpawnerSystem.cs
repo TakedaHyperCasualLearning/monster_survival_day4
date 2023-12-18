@@ -18,7 +18,6 @@ public class EnemySpawnerSystem
         this.playerTransform = playerTransform;
 
         screenSize = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 10.0f));
-        Debug.Log(screenSize);
 
         gameEvent.AddComponent += AddComponent;
         gameEvent.RemoveComponent += RemoveComponent;

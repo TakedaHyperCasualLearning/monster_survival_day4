@@ -5,11 +5,14 @@ using UnityEngine;
 public class BulletMoveSystem
 {
     private GameEvent gameEvent;
+    private Transform playerTransform;
     private List<BulletMoveComponent> bulletMoveComponentList = new List<BulletMoveComponent>();
 
-    public BulletMoveSystem(GameEvent gameEvent)
+    public BulletMoveSystem(GameEvent gameEvent, Transform playerTransform)
     {
         this.gameEvent = gameEvent;
+        this.playerTransform = playerTransform;
+
         gameEvent.AddComponent += AddComponent;
         gameEvent.RemoveComponent += RemoveComponent;
     }
@@ -23,7 +26,8 @@ public class BulletMoveSystem
 
             bulletMoveComponent.transform.Translate(bulletMoveComponent.Direction * bulletMoveComponent.Speed * Time.deltaTime);
 
-            if (bulletMoveComponent.transform.position.magnitude > 10)
+            float magnitude = (bulletMoveComponent.transform.position - playerTransform.position).magnitude;
+            if (magnitude > 10)
             {
                 gameEvent.ReleaseObject(bulletMoveComponent.gameObject);
             }
